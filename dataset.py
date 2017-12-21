@@ -74,12 +74,10 @@ class DataSet(object):
     return self._epochs_done
 
   def next_batch(self, batch_size):
-    """Return the next `batch_size` examples from this data set."""
     start = self._index_in_epoch
     self._index_in_epoch += batch_size
 
     if self._index_in_epoch > self._num_examples:
-      # After each epoch we update this
       self._epochs_done += 1
       start = 0
       self._index_in_epoch = batch_size
